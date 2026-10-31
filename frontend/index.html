@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Three Tier Kubernetes Application</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Three-Tier Kubernetes Application</h1>
+
+    <p>
+        Frontend: Nginx
+    </p>
+
+    <p>
+        Backend: Python Flask
+    </p>
+
+    <p>
+        Database: MySQL
+    </p>
+
+    <button onclick="checkBackend()">
+        Check Backend
+    </button>
+
+    <button onclick="getUsers()">
+        Get Users
+    </button>
+
+    <div id="result">
+        Click a button to test the application.
+    </div>
+
+</div>
+
+<script>
+
+async function checkBackend() {
+
+    const response = await fetch("/api");
+
+    const data = await response.json();
+
+    document.getElementById("result").innerText =
+        JSON.stringify(data, null, 2);
+}
+
+
+async function getUsers() {
+
+    const response = await fetch("/api/users");
+
+    const data = await response.json();
+
+    document.getElementById("result").innerText =
+        JSON.stringify(data, null, 2);
+}
+
+</script>
+
+</body>
+</html>
